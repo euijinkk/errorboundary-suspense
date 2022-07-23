@@ -6,7 +6,7 @@ import Todos from "./Todos";
 
 function App() {
   return (
-    <ErrorBoundary FallbackComponent={ErrorAlert}>
+    <ErrorBoundary fallback={({ error }) => <ErrorAlert error={error} />}>
       <Suspense fallback={<Loading />}>
         <Todos />
       </Suspense>

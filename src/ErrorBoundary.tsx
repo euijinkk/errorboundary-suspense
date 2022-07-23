@@ -6,7 +6,7 @@ export interface FallbackProps {
 }
 
 interface ErrorBoundaryProps {
-  FallbackComponent: React.ComponentType<FallbackProps>;
+  fallback: React.ComponentType<FallbackProps>;
   onReset?: () => void;
 }
 
@@ -36,7 +36,7 @@ class ErrorBoundary extends Component<
   }
 
   render() {
-    const { FallbackComponent } = this.props;
+    const { fallback: FallbackComponent } = this.props;
 
     if (this.state.error) {
       return (
