@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
 
@@ -9,9 +10,12 @@ interface Todo {
 }
 
 const Todos = () => {
+  // fetch는 400, 500 에러에 대해 failed promise를 반환하지 않는다.
+  // axios를 사용하면 간편하다.
   const { data: todos } = useQuery("todos", async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const data: Todo[] = await response.json();
+    const { data } = await axios.get<Todo[]>(
+      "https://jsonplaceholder.typicode.com/todos2"
+    );
 
     return data;
   });
